@@ -4,12 +4,10 @@ RSpec.describe "users/index", type: :view do
   before(:each) do
     assign(:users, [
       User.create!(
-        :name => "Name",
-        :token => "Token"
+        :name => "Name"
       ),
       User.create!(
-        :name => "Name",
-        :token => "Token"
+        :name => "Name"
       )
     ])
   end
@@ -17,6 +15,7 @@ RSpec.describe "users/index", type: :view do
   it "renders a list of users" do
     render
     assert_select "tr>td", :text => "Name".to_s, :count => 2
-    assert_select "tr>td", :text => "Token".to_s, :count => 2
+    assert_select "a", :href => "/users/#{User.first.token.to_s}/public/"
+    assert_select "a", :href => "/users/#{User.last.token.to_s}/public/"
   end
 end
