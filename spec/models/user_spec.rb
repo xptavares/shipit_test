@@ -12,4 +12,8 @@ RSpec.describe User, type: :model do
       it { expect(user).to be_valid  }
     end
   end
+  describe "initialize_fields" do
+    let (:user) { User.create name: "xunda" }
+    it { expect(user.token).not_to be_empty }
+  end
 end
