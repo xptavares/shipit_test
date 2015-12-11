@@ -11,5 +11,8 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe UsersHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe ".min_user_token" do
+    let(:user) { User.create name: "xunda" }
+    it{ expect(helper.min_user_token(user)).to eq user.token.last(4) }
+  end
 end
